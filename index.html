@@ -187,32 +187,65 @@
   /* half spans 2 of 3 columns */
   .project-card.half { grid-column: span 1; }
 
-  .card-media {
-    width: 100%; height: 200px;
-    overflow: hidden; position: relative;
-    background: var(--bg);
+  /* CAROUSEL */
+  .carousel {
+    position: relative;
+    width: 100%;
+    background: #0a0a0a;
+    overflow: hidden;
+    border-radius: var(--radius) var(--radius) 0 0;
   }
-  .card-media img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
+  .carousel-track {
+    display: flex;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .card-media video {
-    width: 100%; height: 100%; object-fit: cover; display: block;
+  .carousel-slide {
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0a0a0a;
   }
-  .card-media-grid {
-    display: grid; grid-template-columns: 1fr 1fr 1fr;
-    height: 200px; overflow: hidden;
+  .carousel-slide img,
+  .carousel-slide video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
   }
-  .card-media-grid img,
-  .card-media-grid video {
-    width: 100%; height: 100%; object-fit: cover; display: block;
+  .carousel.tall .carousel-slide { height: 300px; }
+  .carousel.short .carousel-slide { height: 240px; }
+
+  .carousel-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: background 0.15s, opacity 0.15s;
+    opacity: 0;
   }
-  .card-media-2col {
-    display: grid; grid-template-columns: 1fr 1fr;
-    height: 200px; overflow: hidden;
+  .carousel:hover .carousel-btn { opacity: 1; }
+  .carousel-btn:hover { background: #fff; }
+  .carousel-btn.prev { left: 10px; }
+  .carousel-btn.next { right: 10px; }
+  .carousel-btn svg { width: 14px; height: 14px; color: var(--navy); }
+
+  .carousel-dots {
+    position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 5px; z-index: 10;
   }
-  .card-media-2col img,
-  .card-media-2col video {
-    width: 100%; height: 100%; object-fit: cover; display: block;
+  .carousel-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    border: none; cursor: pointer; padding: 0;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .carousel-dot.active {
+    background: #fff;
+    transform: scale(1.2);
   }
 
   .card-body { padding: 1.25rem 1.375rem 1.5rem; display: flex; flex-direction: column; gap: 0.65rem; flex: 1; }
@@ -346,7 +379,7 @@
 <section class="hero" id="home">
   <div class="hero-inner">
     <div class="hero-avatar">
-      <img src="profilepic" alt="Shreya Ganguli">
+      <img src="profilepic.jpeg" alt="Shreya Ganguli">
     </div>
     <h1>Shreya Ganguli</h1>
     <p class="hero-role">Mechanical Engineering Student</p>
@@ -382,10 +415,23 @@
 
       <!-- NASA — wide -->
       <div class="project-card wide">
-        <div class="card-media-grid">
-          <img src="taking 3d scan" alt="Taking 3D scan of forearm at NASA lab">
-          <img src="3d scann" alt="3D scan processed in Creo Parametric">
-          <img src="3D arm board" alt="Final 3D-printed forearm model with IMU mount">
+        <div class="carousel tall" data-carousel>
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="taking 3d scan" alt="Taking 3D scan of forearm at NASA lab"></div>
+            <div class="carousel-slide"><img src="3d scann" alt="3D scan processed in Creo Parametric"></div>
+            <div class="carousel-slide"><img src="board.jpg" alt="Final 3D-printed forearm model with IMU mount"></div>
+          </div>
+          <button class="carousel-btn prev" aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="carousel-btn next" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+          <div class="carousel-dots">
+            <button class="carousel-dot active"></button>
+            <button class="carousel-dot"></button>
+            <button class="carousel-dot"></button>
+          </div>
         </div>
         <div class="card-body">
           <div class="card-header">
@@ -407,10 +453,23 @@
 
       <!-- UCONN — wide -->
       <div class="project-card wide">
-        <div class="card-media-grid">
-          <img src="knee brace sketch.jpg" alt="Hand-sketched dimensioned drawing of the knee brace">
-          <img src="arduino.jpg" alt="Arduino wiring with load cell and ultrasonic sensor">
-          <img src="knee brace cardboard" alt="Cardboard prototype of the knee brace">
+        <div class="carousel tall" data-carousel>
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="knee brace sketch.jpg" alt="Hand-sketched dimensioned drawing of the knee brace"></div>
+            <div class="carousel-slide"><img src="arduino.jpg" alt="Arduino wiring with load cell and ultrasonic sensor"></div>
+            <div class="carousel-slide"><img src="knee brace cardboard" alt="Cardboard prototype of the knee brace"></div>
+          </div>
+          <button class="carousel-btn prev" aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="carousel-btn next" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+          <div class="carousel-dots">
+            <button class="carousel-dot active"></button>
+            <button class="carousel-dot"></button>
+            <button class="carousel-dot"></button>
+          </div>
         </div>
         <div class="card-body">
           <div class="card-header">
@@ -433,11 +492,27 @@
 
       <!-- BATTLEBOT — half -->
       <div class="project-card half">
-        <div class="card-media-2col">
-          <img src="battlebot cad" alt="BattleBot CAD model in SolidWorks">
-          <video autoplay muted loop playsinline>
-            <source src="battlebot moving.mov" type="video/mp4">
-          </video>
+        <div class="carousel short" data-carousel>
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="battlebot cad.jpg" alt="BattleBot CAD model in SolidWorks"></div>
+            <div class="carousel-slide"><img src="wheel sketch.png" alt="Wheel sketch for BattleBot"></div>
+            <div class="carousel-slide">
+              <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:contain;">
+                <source src="battlebot moving.mov" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <button class="carousel-btn prev" aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="carousel-btn next" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+          <div class="carousel-dots">
+            <button class="carousel-dot active"></button>
+            <button class="carousel-dot"></button>
+            <button class="carousel-dot"></button>
+          </div>
         </div>
         <div class="card-body">
           <div class="card-header">
@@ -458,11 +533,25 @@
 
       <!-- ARTHRITIS AID — half -->
       <div class="project-card half">
-        <div class="card-media-2col">
-          <img src="Key" alt="Key holder end of the arthritis door aid device">
-          <video autoplay muted loop playsinline>
-            <source src="Hand grip closing" type="video/mp4">
-          </video>
+        <div class="carousel short" data-carousel>
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="Key.jpg" alt="Key holder end of the arthritis door aid device"></div>
+            <div class="carousel-slide">
+              <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:contain;">
+                <source src="Hand grip closing" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <button class="carousel-btn prev" aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="carousel-btn next" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+          <div class="carousel-dots">
+            <button class="carousel-dot active"></button>
+            <button class="carousel-dot"></button>
+          </div>
         </div>
         <div class="card-body">
           <div class="card-header">
@@ -544,5 +633,31 @@
 
 <footer>© 2026 Shreya Ganguli — Mechanical Engineering Portfolio</footer>
 
+<script>
+  document.querySelectorAll('[data-carousel]').forEach(carousel => {
+    const track = carousel.querySelector('.carousel-track');
+    const slides = carousel.querySelectorAll('.carousel-slide');
+    const dots = carousel.querySelectorAll('.carousel-dot');
+    const prev = carousel.querySelector('.carousel-btn.prev');
+    const next = carousel.querySelector('.carousel-btn.next');
+    let current = 0;
+
+    function goTo(index) {
+      current = (index + slides.length) % slides.length;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    prev.addEventListener('click', () => goTo(current - 1));
+    next.addEventListener('click', () => goTo(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+    // Hide prev/next if only 1 slide
+    if (slides.length <= 1) {
+      prev.style.display = 'none';
+      next.style.display = 'none';
+    }
+  });
+</script>
 </body>
 </html>
