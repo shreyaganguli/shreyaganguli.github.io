@@ -72,7 +72,7 @@
   .hero-inner { max-width: 680px; position: relative; z-index: 1; }
 
   .hero-avatar {
-    width: 96px; height: 96px; border-radius: 50%;
+    width: 140px; height: 140px; border-radius: 50%;
     background: var(--navy-mid);
     border: 3px solid rgba(255,255,255,0.08);
     box-shadow: 0 0 0 1px rgba(200,169,110,0.2), 0 4px 20px rgba(0,0,0,0.3);
@@ -82,7 +82,7 @@
     font-family: 'Instrument Serif', serif;
     overflow: hidden;
   }
-  .hero-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
 
   .hero h1 {
     font-family: 'Instrument Serif', serif;
@@ -490,14 +490,15 @@
         </div>
       </div>
 
-      <!-- BATTLEBOT — half -->
-      <div class="project-card half">
-        <div class="carousel short" data-carousel>
+      <!-- BATTLEBOT — wide -->
+      <div class="project-card wide">
+        <div class="carousel tall" data-carousel>
           <div class="carousel-track">
             <div class="carousel-slide"><img src="battlebot cad.jpg" alt="BattleBot CAD model in SolidWorks"></div>
             <div class="carousel-slide"><img src="wheel sketch.png" alt="Wheel sketch for BattleBot"></div>
             <div class="carousel-slide">
-              <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:contain;">
+              <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:contain;background:#000;">
+                <source src="battlebot moving.mov" type="video/quicktime">
                 <source src="battlebot moving.mov" type="video/mp4">
               </video>
             </div>
@@ -531,9 +532,9 @@
         </div>
       </div>
 
-      <!-- ARTHRITIS AID — half -->
-      <div class="project-card half">
-        <div class="carousel short" data-carousel>
+      <!-- ARTHRITIS AID — wide -->
+      <div class="project-card wide">
+        <div class="carousel tall" data-carousel>
           <div class="carousel-track">
             <div class="carousel-slide"><img src="Key.jpg" alt="Key holder end of the arthritis door aid device"></div>
             <div class="carousel-slide">
