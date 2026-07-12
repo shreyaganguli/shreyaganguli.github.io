@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shreya Ganguli — Mechanical Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --white: #ffffff;
+    --bg: #f7f5f0;
+    --card: #ffffff;
+    --border: rgba(200,169,110,0.25);
+    --text: #0f1f38;
+    --text-mid: #4a5568;
+    --text-light: #718096;
+    --accent: #c8a96e;
+    --accent-light: #e8d5a3;
+    --navy: #0f1f38;
+    --navy-mid: #1a3254;
+    --tag-bg: rgba(200,169,110,0.12);
+    --tag-border: rgba(200,169,110,0.3);
+    --radius: 12px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Geist', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(247,245,240,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 2.5rem; height: 56px;
+  }
+  .nav-name {
+    font-family: 'Geist', sans-serif;
+    font-size: 15px; font-weight: 600;
+    color: var(--navy); letter-spacing: -0.01em;
+  }
+  .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--text-mid);
+    font-size: 14px; font-weight: 400;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 100px 2rem 4rem;
+    background: var(--navy);
+    position: relative; overflow: hidden;
+  }
+  .hero::before { content: ''; position: absolute; top: -60px; right: -80px; width: 520px; height: 520px; border-radius: 50%; border: 1.5px solid rgba(200,169,110,0.12); pointer-events: none; }
+  .hero::after  { content: ''; position: absolute; bottom: -100px; right: 60px; width: 320px; height: 320px; border-radius: 50%; border: 1px solid rgba(200,169,110,0.07); pointer-events: none; }
+  .hero-inner { max-width: 680px; position: relative; z-index: 1; }
+
+  .hero-avatar {
+    width: 140px; height: 140px; border-radius: 50%;
+    background: var(--navy-mid);
+    border: 3px solid rgba(255,255,255,0.08);
+    box-shadow: 0 0 0 1px rgba(200,169,110,0.2), 0 4px 20px rgba(0,0,0,0.3);
+    margin: 0 auto 1.75rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; font-weight: 600; color: var(--accent);
+    font-family: 'Instrument Serif', serif;
+    overflow: hidden;
+  }
+  .hero-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+
+  .hero h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(44px, 7vw, 72px);
+    font-weight: 400;
+    line-height: 1.05;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .hero-role {
+    font-size: 16px; color: var(--accent);
+    font-weight: 400; margin-bottom: 1.25rem;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-desc {
+    font-size: 15px; color: rgba(255,255,255,0.6);
+    line-height: 1.75; max-width: 520px;
+    margin: 0 auto 2rem;
+  }
+  .hero-desc strong { color: var(--accent-light); font-weight: 500; }
+
+  .hero-links {
+    display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;
+  }
+  .hero-link {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 9px 18px; border-radius: 8px;
+    border: 1px solid rgba(200,169,110,0.35);
+    background: transparent;
+    color: var(--accent-light); font-size: 13.5px; font-weight: 500;
+    text-decoration: none;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .hero-link:hover {
+    border-color: var(--accent);
+    background: rgba(200,169,110,0.08);
+  }
+  .hero-link svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 960px; margin: 0 auto; }
+
+  .section-heading {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 400; color: var(--navy);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .section-sub {
+    font-size: 15px; color: var(--text-mid);
+    margin-bottom: 3rem; max-width: 520px;
+  }
+
+  /* ABOUT */
+  #about { background: var(--bg); }
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { color: var(--text-mid); margin-bottom: 1rem; font-size: 15px; line-height: 1.75; }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+
+  .about-stats { display: flex; flex-direction: column; gap: 1rem; }
+  .stat-card {
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--white);
+  }
+  .stat-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 28px; color: var(--navy); font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+  .stat-label { font-size: 13px; color: var(--text-light); margin-top: 2px; }
+
+  /* PROJECTS */
+  #projects { background: var(--white); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .project-card:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    transform: translateY(-2px);
+  }
+
+  /* wide card spans full width */
+  .project-card.wide { grid-column: 1 / -1; }
+  /* half spans 2 of 3 columns */
+  .project-card.half { grid-column: span 1; }
+
+  /* CAROUSEL */
+  .carousel {
+    position: relative;
+    width: 100%;
+    background: #0a0a0a;
+    overflow: hidden;
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+  .carousel-track {
+    display: flex;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .carousel-slide {
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0a0a0a;
+  }
+  .carousel-slide img,
+  .carousel-slide video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .carousel.tall .carousel-slide { height: 300px; }
+  .carousel.short .carousel-slide { height: 240px; }
+
+  .carousel-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: background 0.15s, opacity 0.15s;
+    opacity: 0;
+  }
+  .carousel:hover .carousel-btn { opacity: 1; }
+  .carousel-btn:hover { background: #fff; }
+  .carousel-btn.prev { left: 10px; }
+  .carousel-btn.next { right: 10px; }
+  .carousel-btn svg { width: 14px; height: 14px; color: var(--navy); }
+
+  .carousel-dots {
+    position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 5px; z-index: 10;
+  }
+  .carousel-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    border: none; cursor: pointer; padding: 0;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .carousel-dot.active {
+    background: #fff;
+    transform: scale(1.2);
+  }
+
+  .card-body { padding: 1.25rem 1.375rem 1.5rem; display: flex; flex-direction: column; gap: 0.65rem; flex: 1; }
+
+  .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; }
+  .card-org { font-size: 12px; color: var(--text-light); font-weight: 500; letter-spacing: 0.01em; }
+  .card-year {
+    font-size: 11.5px; color: var(--text-light);
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    border-radius: 20px;
+    padding: 2px 10px;
+    white-space: nowrap; flex-shrink: 0;
+    font-weight: 500;
+  }
+
+  .card-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 19px; font-weight: 400;
+    color: var(--navy); line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .card-desc { font-size: 13.5px; color: var(--text-mid); line-height: 1.7; }
+
+  .card-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 0.25rem; }
+  .card-tag {
+    padding: 3px 10px;
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    border-radius: 20px;
+    font-size: 11.5px; color: #7a5c1e;
+    font-weight: 500;
+  }
+
+  /* SKILLS */
+  #skills { background: var(--navy); }
+  #skills .section-heading { color: #ffffff; }
+  #skills .section-sub { color: rgba(255,255,255,0.5); }
+  .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .skill-group {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(200,169,110,0.15);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+  }
+  .skill-group-title {
+    font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 0.875rem;
+  }
+  .skill-item {
+    font-size: 13.5px; color: rgba(255,255,255,0.7);
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; gap: 7px;
+  }
+  .skill-item:last-child { border-bottom: none; }
+  .skill-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+  /* CONTACT */
+  #contact { background: var(--white); }
+  .contact-desc { font-size: 15px; color: var(--text-mid); margin-bottom: 2rem; max-width: 480px; line-height: 1.75; }
+  .contact-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .contact-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 10px 20px; border-radius: 8px;
+    font-size: 13.5px; font-weight: 500;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    color: var(--text); background: var(--white);
+    transition: all 0.15s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .contact-btn:hover { border-color: #bbb; background: var(--bg); }
+  .contact-btn.primary {
+    background: var(--navy); color: var(--white); border-color: var(--navy);
+  }
+  .contact-btn.primary:hover { background: var(--navy-mid); border-color: var(--navy-mid); }
+
+  footer {
+    background: var(--navy);
+    border-top: 1px solid rgba(200,169,110,0.15);
+    padding: 1.5rem 2.5rem;
+    text-align: center;
+    font-size: 12px; color: rgba(255,255,255,0.3);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-inner > * { animation: fadeUp 0.5s ease both; }
+  .hero-inner > *:nth-child(1) { animation-delay: 0.05s; }
+  .hero-inner > *:nth-child(2) { animation-delay: 0.12s; }
+  .hero-inner > *:nth-child(3) { animation-delay: 0.18s; }
+  .hero-inner > *:nth-child(4) { animation-delay: 0.24s; }
+  .hero-inner > *:nth-child(5) { animation-delay: 0.3s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .projects-grid { grid-template-columns: 1fr 1fr; }
+    .project-card.wide { grid-column: 1 / -1; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+  @media (max-width: 600px) {
+    nav { padding: 0 1.25rem; }
+    .nav-links { gap: 1.25rem; }
+    section { padding: 3.5rem 1.25rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.wide, .project-card.half { grid-column: 1 / -1; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .card-media-grid { grid-template-columns: 1fr 1fr; }
+    .card-media-grid img:last-child { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-name">Shreya Ganguli</div>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-avatar">
+      <img src="profilepic.png" alt="Shreya Ganguli">
+    </div>
+    <h1>Shreya Ganguli</h1>
+    <p class="hero-role">Mechanical Engineering Student</p>
+    <p class="hero-desc">
+      I'm a student majoring in <strong>Mechanical Engineering</strong> at the <strong>University of Texas at Austin</strong>, passionate about aerospace and biomedical devices. I've had hands-on research experience at <strong>NASA Johnson Space Center</strong>, and my journey has led me to design assistive devices, robotics, and CAD mechanisms that blend creativity with engineering principles. I see every project as a chance to explore, learn, and push boundaries.
+    </p>
+    <div class="hero-links">
+      <a class="hero-link" href="mailto:shreyaganguli000@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        Email
+      </a>
+      <a class="hero-link" href="https://www.linkedin.com/in/shreyajganguli/" target="_blank">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a class="hero-link" href="#projects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        View Projects
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <h2 class="section-heading">Projects</h2>
+    <p class="section-sub">A collection of engineering projects spanning biomedical devices, mechatronics, and assistive technology.</p>
+
+    <div class="projects-grid">
+
+      <!-- NASA — wide -->
+      <div class="project-card wide">
+        <div class="carousel tall" data-carousel>
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="taking 3d scan" alt="Taking 3D scan of forearm at NASA lab"></div>
+            <div class="carousel-slide"><img src="3d scann" alt="3D scan processed in Creo Parametric"></div>
+            <div class="carousel-slide"><img src="board.jpg" alt="Final 3D-printed forearm model with IMU mount"></div>
+          </div>
+          <button class="carousel-btn prev" aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="carousel-btn next" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+          <div class="carousel-dots">
+            <button class="carousel-dot active"></button>
+            <button class="carousel-dot"></button>
+            <button class="carousel-dot"></button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <span class="card-org">NASA Johnson Space Center</span>
+            <span class="card-year">2024</span>
+          </div>
+          <div class="card-title">3D-Printed Forearm Model for Arm Offloading Research</div>
+          <p class="card-desc">Developed a patient-realistic forearm model at NASA JSC to support arm offloading device testing. Evaluated iPhone and Android 3D scanning apps, processed scan data in Creo Parametric, and redesigned the model to include an internal 1"×1" aluminum channel, a precision IMU mounting surface with caliper-measured bolt holes, and through-hole fasteners. Printed in ABS on a Raise3D Pro2 with custom settings to prevent warping — significantly improving IMU stability and sensor accuracy for offloading algorithm development.</p>
+          <div class="card-tags">
+            <span class="card-tag">3D Scanning</span>
+            <span class="card-tag">Creo Parametric</span>
+            <span class="card-tag">ABS Printing</span>
+            <span class="card-tag">IMU Sensors</span>
+            <span class="card-tag">Tolerance Design</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- UCONN — wide -->
+      <div class="project-card wide">
+        <div class="carousel tall" data-carousel>
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="knee brace sketch.jpg" alt="Hand-sketched dimensioned drawing of the knee brace"></div>
+            <div class="carousel-slide"><img src="arduino.jpg" alt="Arduino wiring with load cell and ultrasonic sensor"></div>
+            <div class="carousel-slide"><img src="knee brace cardboard" alt="Cardboard prototype of the knee brace"></div>
+          </div>
+          <button class="carousel-btn prev" aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="carousel-btn next" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+          <div class="carousel-dots">
+            <button class="carousel-dot active"></button>
+            <button class="carousel-dot"></button>
+            <button class="carousel-dot"></button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <span class="card-org">UConn Engineering Summer Program</span>
+            <span class="card-year">2024</span>
+          </div>
+          <div class="card-title">Automated Knee Exoskeleton Brace</div>
+          <p class="card-desc">Designed and built a functional knee exoskeleton brace covering the full engineering design cycle: hand-sketched dimensioned drawings, cardboard prototypes, fabrication, electronics integration, and software control. The final brace integrates an Arduino microcontroller, a load cell for force sensing, and an ultrasonic distance sensor, programmed in C++ and Python to automate assistive actuation based on real-time sensor feedback.</p>
+          <div class="card-tags">
+            <span class="card-tag">Arduino</span>
+            <span class="card-tag">C++</span>
+            <span class="card-tag">Python</span>
+            <span class="card-tag">Load Cell</span>
+            <span class="card-tag">3D Printing</span>
+            <span class="card-tag">Assistive Technology</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BATTLEBOT — wide -->
+      <div class="project-card wide">
+        <div class="carousel tall" data-carousel>
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="battlebot cad.jpg" alt="BattleBot CAD model in SolidWorks"></div>
+            <div class="carousel-slide"><img src="wheel sketch.png" alt="Wheel sketch for BattleBot"></div>
+            <div class="carousel-slide"><img src="solderimg.jpg" alt="Soldering the BattleBot electronics"></div>
+            <div class="carousel-slide">
+              <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:contain;background:#000;">
+                <source src="battlebot vid.mov" type="video/quicktime">
+                <source src="battlebot vid.mov" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <button class="carousel-btn prev" aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="carousel-btn next" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+          <div class="carousel-dots">
+            <button class="carousel-dot active"></button>
+            <button class="carousel-dot"></button>
+            <button class="carousel-dot"></button>
+            <button class="carousel-dot"></button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <span class="card-org">ME 302 — Freshman ME Course</span>
+            <span class="card-year">2025</span>
+          </div>
+          <div class="card-title">Turtle-Themed Combat Robot</div>
+          <p class="card-desc">Designed and built a turtle-themed combat robot for a team competition. Contributed SolidWorks CAD of a custom wheel (Ø55mm, angled tread, press-fit axle hub) and elliptical shell/armor. Created a full 12-part BOM including motors, ESCs, receiver, battery, and 3D-printed mounts, and applied soldering for all wiring. Multiple design iterations: wheels resized twice, baseplate spacing revised for wiring clearance.</p>
+          <div class="card-tags">
+            <span class="card-tag">SolidWorks</span>
+            <span class="card-tag">Assembly Design</span>
+            <span class="card-tag">Soldering</span>
+            <span class="card-tag">BOM</span>
+            <span class="card-tag">RC Electronics</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARTHRITIS AID — wide -->
+      <div class="project-card wide">
+        <div class="carousel tall" data-carousel>
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="Key.jpg" alt="Key holder end of the arthritis door aid device"></div>
+            <div class="carousel-slide" style="display:grid;grid-template-columns:1fr 1fr;height:300px;background:#f9f8f5;">
+              <div style="overflow:hidden;display:flex;align-items:center;justify-content:center;border-right:1px solid #e0dbd0;">
+                <img src="key sketch.jpg" alt="Key problem sketch" style="width:100%;height:100%;object-fit:cover;">
+              </div>
+              <div style="overflow:hidden;display:flex;align-items:center;justify-content:center;">
+                <img src="key sketch p.jpg" alt="Door grip sketch" style="width:100%;height:100%;object-fit:cover;">
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:contain;">
+                <source src="Hand grip closing" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <button class="carousel-btn prev" aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="carousel-btn next" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+          <div class="carousel-dots">
+            <button class="carousel-dot active"></button>
+            <button class="carousel-dot"></button>
+            <button class="carousel-dot"></button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <span class="card-org">Biomedical · Assistive Tech</span>
+            <span class="card-year">2025</span>
+          </div>
+          <div class="card-title">Arthritis Door-Opening Aid</div>
+          <p class="card-desc">Portable ergonomic device for rheumatoid and osteoarthritis patients who struggle to grip keys or doorknobs. Backed by 7 peer-reviewed sources. One end holds a key via friction fit; the other uses interlocking C-shaped TPU arms that auto-close around a doorknob when pressed, converting a push into a firm pain-free grip. PLA chassis for rigidity, TPU arms for compliance. Developed through HMW ideation, literature research, sketching, and multi-material 3D prototyping.</p>
+          <div class="card-tags">
+            <span class="card-tag">Assistive Technology</span>
+            <span class="card-tag">PLA / TPU</span>
+            <span class="card-tag">Linkage Mechanism</span>
+            <span class="card-tag">Human Factors</span>
+            <span class="card-tag">Research-Backed</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROCKET FIN CAN FEA — wide -->
+      <div class="project-card wide">
+        <div class="carousel tall" data-carousel>
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="study1_stress.png" alt="Von Mises stress plot — rocket fin can FEA Study 1"></div>
+            <div class="carousel-slide"><img src="study1_displacement.png" alt="Displacement plot — rocket fin can FEA Study 1"></div>
+            <div class="carousel-slide"><img src="fin_can_model.png" alt="SolidWorks model of the 4-fin rocket fin can"></div>
+          </div>
+          <button class="carousel-btn prev" aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="carousel-btn next" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+          <div class="carousel-dots">
+            <button class="carousel-dot active"></button>
+            <button class="carousel-dot"></button>
+            <button class="carousel-dot"></button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-header">
+            <span class="card-org">Self-Directed Portfolio · UT Austin</span>
+            <span class="card-year">2025</span>
+          </div>
+          <div class="card-title">Rocket Fin Can — Structural FEA & Design Iteration</div>
+          <p class="card-desc">Designed a 4-fin rocket fin can in SolidWorks and ran 3 static FEA studies to optimize structural performance under real flight loads — aerodynamic pressure (6,125 Pa at 100 m/s) and 20 N axial thrust. Increasing the fin root fillet from 2mm to 5mm reduced max stress by 15% and raised the safety factor from 180 to 210. Subsequently reducing fin span by 28% saved 2.82g of mass while maintaining the same FOS — a lighter, stronger design than the baseline.</p>
+          <div class="card-tags">
+            <span class="card-tag">SolidWorks Simulation</span>
+            <span class="card-tag">FEA</span>
+            <span class="card-tag">Von Mises Stress</span>
+            <span class="card-tag">Design Iteration</span>
+            <span class="card-tag">Aerospace Structures</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <h2 class="section-heading">Skills & Tools</h2>
+    <p class="section-sub">Technical capabilities built through hands-on project work.</p>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">CAD & Simulation</div>
+        <div class="skill-item"><span class="skill-dot"></span>SolidWorks</div>
+        <div class="skill-item"><span class="skill-dot"></span>SolidWorks Simulation (FEA)</div>
+        <div class="skill-item"><span class="skill-dot"></span>Creo Parametric</div>
+        <div class="skill-item"><span class="skill-dot"></span>AutoCAD</div>
+        <div class="skill-item"><span class="skill-dot"></span>Technical Drawing / GD&T</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Fabrication</div>
+        <div class="skill-item"><span class="skill-dot"></span>FDM 3D Printing (ABS/PLA)</div>
+        <div class="skill-item"><span class="skill-dot"></span>Raise3D Pro2 / ideaMaker</div>
+        <div class="skill-item"><span class="skill-dot"></span>3D Scanning (iOS/Android)</div>
+        <div class="skill-item"><span class="skill-dot"></span>Soldering</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Electronics</div>
+        <div class="skill-item"><span class="skill-dot"></span>Arduino</div>
+        <div class="skill-item"><span class="skill-dot"></span>Raspberry Pi</div>
+        <div class="skill-item"><span class="skill-dot"></span>Load Cell & Force Sensors</div>
+        <div class="skill-item"><span class="skill-dot"></span>IMU / Ultrasonic Sensors</div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Software</div>
+        <div class="skill-item"><span class="skill-dot"></span>C++</div>
+        <div class="skill-item"><span class="skill-dot"></span>Python</div>
+        <div class="skill-item"><span class="skill-dot"></span>MATLAB (intro)</div>
+        <div class="skill-item"><span class="skill-dot"></span>ideaMaker Slicing</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <h2 class="section-heading">Let's Connect</h2>
+    <p class="contact-desc">Interested in collaborating, have a research or internship opportunity, or just want to talk engineering? I'd love to hear from you.</p>
+    <div class="contact-links">
+      <button class="contact-btn primary" onclick="document.getElementById('email-popup').style.display='flex'" style="cursor:pointer;font-family:inherit;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        Email Me
+      </button>
+
+      <!-- Email Popup -->
+      <div id="email-popup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:999;align-items:center;justify-content:center;" onclick="if(event.target===this)this.style.display='none'">
+        <div style="background:#fff;border-radius:12px;padding:2rem 2.5rem;max-width:380px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.15);text-align:center;">
+          <div style="font-family:'Instrument Serif',serif;font-size:22px;color:#0f1f38;margin-bottom:0.5rem;">Get in Touch</div>
+          <p style="font-size:14px;color:#4a5568;margin-bottom:1.25rem;">Feel free to reach out at:</p>
+          <div style="background:#f7f5f0;border:1px solid rgba(200,169,110,0.3);border-radius:8px;padding:0.875rem 1.25rem;font-size:15px;font-weight:500;color:#0f1f38;letter-spacing:0.01em;">
+            shreyaganguli000@gmail.com
+          </div>
+          <button onclick="navigator.clipboard.writeText('shreyaganguli000@gmail.com');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Email',2000)" style="margin-top:1rem;width:100%;padding:10px;background:#0f1f38;color:#fff;border:none;border-radius:8px;font-size:13.5px;font-weight:500;cursor:pointer;font-family:inherit;transition:background 0.15s;">Copy Email</button>
+          <button onclick="document.getElementById('email-popup').style.display='none'" style="margin-top:0.6rem;width:100%;padding:10px;background:transparent;color:#718096;border:1px solid #e2e8f0;border-radius:8px;font-size:13.5px;font-weight:500;cursor:pointer;font-family:inherit;">Close</button>
+        </div>
+      </div>
+      <a class="contact-btn" href="https://www.linkedin.com/in/shreyajganguli/" target="_blank">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Shreya Ganguli — Mechanical Engineering Portfolio</footer>
+
+<script>
+  document.querySelectorAll('[data-carousel]').forEach(carousel => {
+    const track = carousel.querySelector('.carousel-track');
+    const slides = carousel.querySelectorAll('.carousel-slide');
+    const dots = carousel.querySelectorAll('.carousel-dot');
+    const prev = carousel.querySelector('.carousel-btn.prev');
+    const next = carousel.querySelector('.carousel-btn.next');
+    let current = 0;
+
+    function goTo(index) {
+      current = (index + slides.length) % slides.length;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    prev.addEventListener('click', () => goTo(current - 1));
+    next.addEventListener('click', () => goTo(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+    if (slides.length <= 1) {
+      prev.style.display = 'none';
+      next.style.display = 'none';
+    }
+  });
+</script>
+</body>
+</html>
